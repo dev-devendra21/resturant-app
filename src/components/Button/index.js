@@ -1,10 +1,10 @@
-import {FiPlus, FiMinus} from 'react-icons/fi'
+import { FiPlus, FiMinus } from 'react-icons/fi'
 import './index.css'
-import {useCart} from '../../context/CartContext'
+import { useCart } from '../../context/CartContext'
 
 const Button = props => {
-  const {id, increaseQuantity, decreaseQuantity} = props
-  const {cart} = useCart()
+  const { id, increaseQuantity, decreaseQuantity } = props
+  const { cart } = useCart()
 
   const quantity = cart?.find(item => item.id === id)?.quantity
 

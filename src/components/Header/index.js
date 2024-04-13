@@ -1,9 +1,9 @@
-import {AiOutlineShoppingCart} from 'react-icons/ai'
+import { AiOutlineShoppingCart } from 'react-icons/ai'
 import './index.css'
-import {useCart} from '../../context/CartContext'
+import { useCart } from '../../context/CartContext'
 
 const Header = () => {
-  const {cart} = useCart()
+  const { cart } = useCart()
   return (
     <>
       <nav className="nav-bar">

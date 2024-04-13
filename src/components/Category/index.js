@@ -1,10 +1,10 @@
 import './index.css'
 
-const Category = ({categoryData, onChangeCategory, onSelectedId}) => (
+const Category = ({ categoryData, onChangeCategory, onSelectedId }) => (
   <>
     <ul className="category-list-container">
       {categoryData.map(eachData => {
-        const {menuCategoryId, menuCategory} = eachData
+        const { menuCategoryId, menuCategory } = eachData
         return (
           <li key={menuCategoryId}>
             <button

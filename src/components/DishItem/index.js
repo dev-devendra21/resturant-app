@@ -1,6 +1,6 @@
 import './index.css'
 import Button from '../Button'
-import {useCart} from '../../context/CartContext'
+import { useCart } from '../../context/CartContext'
 
 const DishItem = props => {
   const {
@@ -17,7 +17,7 @@ const DishItem = props => {
     dishQuantity,
   } = props
 
-  const {setCart, cart} = useCart()
+  const { setCart, cart } = useCart()
 
   const addToCart = () => {
     setCart(prev => [
@@ -37,7 +37,7 @@ const DishItem = props => {
     if (isExist) {
       const updatedCart = cart.map(eachItem =>
         eachItem.id === dishId
-          ? {...eachItem, quantity: eachItem.quantity + 1}
+          ? { ...eachItem, quantity: eachItem.quantity + 1 }
           : eachItem,
       )
       setCart(updatedCart)
@@ -57,7 +57,7 @@ const DishItem = props => {
       if (isExist.quantity > 0) {
         const updatedCart = cart.map(eachItem =>
           eachItem.id === dishId
-            ? {...eachItem, quantity: eachItem.quantity - 1}
+            ? { ...eachItem, quantity: eachItem.quantity - 1 }
             : eachItem,
         )
         setCart(updatedCart)

@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import Category from '../Category'
 import Dishes from '../Dishes'
 import './index.css'
@@ -40,12 +40,12 @@ const Home = () => {
 
   useEffect(() => {
     const controller = new AbortController()
-    const {signal} = controller
+    const { signal } = controller
     const resturantData = async () => {
       try {
         const response = await fetch(
           'https://run.mocky.io/v3/77a7e71b-804a-4fbd-822c-3e365d3482cc',
-          {signal},
+          { signal },
         )
         const responseData = await response.json()
         if (response.ok) {
