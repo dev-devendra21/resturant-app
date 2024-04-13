@@ -1,0 +1,49 @@
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+}
+
+.resturant-name {
+  color: #000000;
+  font-size: 25px;
+}
+
+.my-orders {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .my-orders {
+    display: block;
+  }
+}
+
+.cart-container {
+  display: flex;
+  align-items: center;
+}
+
+.cart-icon-container {
+  margin-left: 10px;
+  position: relative;
+}
+
+.cart-count {
+  border-radius: 50%;
+  padding: 6px;
+  color: #ffffff;
+  background-color: #ff6347;
+  position: absolute;
+  bottom: 24px;
+  left: 23px;
+}
+
+.cart-icon {
+  font-size: 40px;
+}
+
+.horizontal-line {
+  color: grey;
+}

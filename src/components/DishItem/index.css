@@ -1,0 +1,100 @@
+.dishes-card {
+  width: 95%;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 10px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  min-height: 250px;
+}
+
+.dish-details {
+  min-height: 240px;
+}
+
+.food-symbol {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.not-available {
+  color: red;
+}
+
+@media screen and (max-width: 280px) {
+  .dish-details {
+    max-width: 100px;
+  }
+
+  .food-symbol {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.dish-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.dish-name {
+  font-size: 20px;
+}
+
+.dish-price {
+  color: rgb(53, 53, 53);
+  font-weight: 800;
+}
+
+.dish-description {
+  padding-right: 10px;
+  color: grey;
+}
+
+.dish-image-container {
+  display: flex;
+  align-items: flex-start;
+  min-height: 240px;
+}
+.dish-calories {
+  color: #ffa500;
+  font-weight: 600;
+  text-align: center;
+}
+
+.dish-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+}
+
+.customizations {
+  color: blue;
+}
+
+.dish-name-container {
+  display: flex;
+}
+
+.dish-icon-container {
+  margin-top: 13px;
+}
+
+@media screen and (min-width: 768px) {
+  .dish-calories {
+    margin-right: 50px;
+  }
+  .dish-image {
+    width: 150px;
+    height: 240px;
+  }
+  .dish-details {
+    flex-grow: 1;
+  }
+}

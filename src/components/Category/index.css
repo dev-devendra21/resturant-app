@@ -1,0 +1,22 @@
+.category-list-container {
+  display: flex;
+  list-style-type: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-left: 10px;
+}
+
+.active-button {
+  color: #d65c5c;
+  border-bottom: 2px solid #d65c5c !important;
+}
+
+.button {
+  background-color: transparent;
+  border-width: 0px;
+  cursor: pointer;
+  width: 180px;
+  padding: 10px;
+  font-weight: 600;
+  scroll-snap-align: center;
+}
