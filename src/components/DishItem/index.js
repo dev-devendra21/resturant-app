@@ -17,52 +17,45 @@ const DishItem = props => {
     dishQuantity,
   } = props
 
-  const { setCart, cart } = useCart()
+  const {
+    cart,
+    addCartItem,
+    removeCartItem,
+    incrementCartItemQuantity,
+    decrementCartItemQuantity,
+  } = useCart()
 
   const addToCart = () => {
-    setCart(prev => [
-      ...prev,
-      {
-        id: dishId,
-        name: dishName,
-        price: dishPrice,
-        image: dishImage,
-        quantity: dishQuantity + 1,
-      },
-    ])
+    const payload = {
+      id: dishId,
+      name: dishName,
+      price: dishPrice,
+      image: dishImage,
+      quantity: dishQuantity + 1,
+    }
+    return addCartItem(payload)
   }
+
+  const removeFromCart = () => removeCartItem(dishId)
 
   const handleIncreaseQuantity = () => {
     const isExist = cart.find(item => item.id === dishId)
     if (isExist) {
-      const updatedCart = cart.map(eachItem =>
-        eachItem.id === dishId
-          ? { ...eachItem, quantity: eachItem.quantity + 1 }
-          : eachItem,
-      )
-      setCart(updatedCart)
+      incrementCartItemQuantity(dishId)
     } else {
       addToCart()
     }
-  }
-
-  const removeFromCart = () => {
-    const remove = cart.filter(item => item.id !== dishId)
-    setCart(remove)
   }
 
   const handleDecreaseQuantity = () => {
     const isExist = cart.find(item => item.id === dishId)
     if (isExist) {
       if (isExist.quantity > 0) {
-        const updatedCart = cart.map(eachItem =>
-          eachItem.id === dishId
-            ? { ...eachItem, quantity: eachItem.quantity - 1 }
-            : eachItem,
-        )
-        setCart(updatedCart)
+        decrementCartItemQuantity(dishId)
       }
-      if (isExist.quantity <= 1) removeFromCart()
+    }
+    if (isExist.quantity <= 1) {
+      removeFromCart()
     }
   }
 
