@@ -1,4 +1,3 @@
-import { FiPlus, FiMinus } from 'react-icons/fi'
 import './index.css'
 import { useCart } from '../../context/CartContext'
 
@@ -16,15 +15,15 @@ const Button = props => {
           type="button"
           className="button-action"
         >
-          <FiMinus />
+          -
         </button>
-        <span>{quantity !== undefined ? quantity : 0}</span>
+        <p>{quantity !== undefined ? quantity : 0}</p>
         <button
           onClick={increaseQuantity}
           type="button"
           className="button-action"
         >
-          <FiPlus />
+          +
         </button>
       </div>
     </>
