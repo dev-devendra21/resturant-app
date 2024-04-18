@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+
 import Category from '../Category'
 import Dishes from '../Dishes'
 import './index.css'
+import { useCart } from '../../context/CartContext'
 
 const formatData = data => {
   const category = data.map(eachData => ({
@@ -25,92 +26,22 @@ const formatData = data => {
   return category
 }
 
-const ApiStatusConstant = {
-  INPROCESS: 'INPROCESS',
-  SUCCESS: 'SUCCESS',
-  FAILURE: 'FAILURE',
-}
+
 
 const Home = () => {
-  const [categoryList, setCategoryList] = useState({
-    data: [],
-    apiStatus: ApiStatusConstant.INPROCESS,
-  })
-  const [selectedCategoryId, setSelectedCategoryId] = useState('')
+  const { restaurantData, selectedId } = useCart()
+  let data = []
+  let index = 0
 
-  useEffect(() => {
-    const controller = new AbortController()
-    const { signal } = controller
-    const resturantData = async () => {
-      try {
-        const response = await fetch(
-          'https://run.mocky.io/v3/77a7e71b-804a-4fbd-822c-3e365d3482cc',
-          { signal },
-        )
-        const responseData = await response.json()
-        if (response.ok) {
-          const category = formatData(responseData[0].table_menu_list)
-          setCategoryList(prev => ({
-            ...prev,
-            apiStatus: ApiStatusConstant.SUCCESS,
-            data: category,
-          }))
+  if (restaurantData.status === "SUCCESS") {
+    data = formatData(restaurantData.data.table_menu_list)
+    index = data.findIndex(eachData => eachData.menuCategoryId === selectedId)
 
-          setSelectedCategoryId(category[0].menuCategoryId)
-        } else {
-          setCategoryList(prev => ({
-            ...prev,
-            apiStatus: ApiStatusConstant.FAILURE,
-          }))
-        }
-      } catch (error) {
-        console.log(error)
-        setCategoryList(prev => ({
-          ...prev,
-          apiStatus: ApiStatusConstant.FAILURE,
-        }))
-      }
-    }
-    resturantData()
-    return () => {
-      controller.abort()
-    }
-  }, [])
-
-  const handleCategoryId = id => {
-    setSelectedCategoryId(id)
   }
-
-  let selectedCategoryIndex = null
-
-  if (categoryList.data.length > 0) {
-    const categoryDishesIndex = () => {
-      const index = categoryList.data.findIndex(
-        eachCategory => eachCategory.menuCategoryId === selectedCategoryId,
-      )
-
-      return index
-    }
-
-    selectedCategoryIndex = categoryDishesIndex()
-  }
-
   return (
     <>
-      {categoryList.data.length > 0 && (
-        <div className="home-container">
-          <Category
-            categoryData={categoryList.data}
-            onChangeCategory={handleCategoryId}
-            onSelectedId={selectedCategoryId}
-          />
-          <Dishes
-            categoryDishes={
-              categoryList.data[selectedCategoryIndex]?.categoryDishes
-            }
-          />
-        </div>
-      )}
+      <Category categoryData={data} />
+      <Dishes categoryDishes={data[index]?.categoryDishes} />
     </>
   )
 }

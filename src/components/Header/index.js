@@ -3,11 +3,16 @@ import './index.css'
 import { useCart } from '../../context/CartContext'
 
 const Header = () => {
-  const { cart } = useCart()
+  const { cart, restaurantData } = useCart()
+  let restaurantName = ""
+  if (restaurantData.status === "SUCCESS") {
+    restaurantName = restaurantData.data.restaurant_name
+
+  }
   return (
     <>
       <nav className="nav-bar">
-        <h1 className="resturant-name">UNI Resto Cafe</h1>
+        <h1 className="restaurant-name">{restaurantName}</h1>
         <div className="cart-container">
           <p className="my-orders">My Orders</p>
           <p className="cart-icon-container">
